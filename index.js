@@ -65,7 +65,7 @@ import { MessagesContext, useDetails } from "./Chat";
 import GrandChild from "./GrandChild";
 
 export default function Messages() {
-	const [ user, setUser ] = useState({ username: "Venkatesh" });
+	const [ user, setUser ] = useState({ username: "Ravi" });
 	const [ count, setCount ] = useState(0);
 	const data = useFetch("https://jsonplaceholder.typicode.com/users");
 	const todos = useFetch("https://jsonplaceholder.typicode.com/todos");
@@ -146,7 +146,7 @@ function sumOfTwo(a, b) {
 
 // export class Messages extends Component {
 // 	state = {
-// 		username: "Venkatesh",
+// 		username: "Ravi",
 // 	};
 // 	render() {
 // 		return (
