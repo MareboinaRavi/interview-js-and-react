@@ -47,3 +47,69 @@ console.log(4);
 // 10. The event loop checks the event queue and finds the callback function of the first `setTimeout`. It is executed, printing `2` to the console.
 
 // Therefore, the output is `1`, `4`, `3`, `2`.
+
+const arr = [10, 20, 30, 40, 50];
+for (var i = 0; i < arr.length; i++) {
+  setTimeout(() => {
+    console.log(arr[i]);
+  }, 1000);
+}
+
+// Actually, the output of the code snippet will not be as expected. It will print `undefined` five times instead of the actual array elements.
+
+// The reason for this unexpected output is due to the use of `var` to declare the loop variable `i`. In JavaScript, `var` has function scope, not block scope. So, the `setTimeout` callback function accesses the value of `i` at the time it is executed, not at the time the `setTimeout` function was called.
+
+// By the time the first `setTimeout` callback function is executed (after one second), the loop has already finished executing, and the value of `i` is equal to `arr.length`, which is out of the array bounds. Therefore, `arr[i]` is `undefined` for each iteration.
+
+// To fix this issue, you can use `let` instead of `var` to declare the loop variable `i`. `let` has block scope, which means it creates a new variable `i` for each iteration of the loop, preserving the correct value within the `setTimeout` callback function.
+
+// Here's the modified code using `let`:
+
+// ```javascript
+// const arr = [10, 20, 30, 40, 50];
+// for (let i = 0; i < arr.length; i++) {
+//   setTimeout(() => {
+//     console.log(arr[i]);
+//   }, 1000);
+// }
+// ```
+// 10
+// 20
+// 30
+// 40
+// 50
+
+
+// With this modification, the code will print the actual array elements in the console after one second, as you initially expected.
+
+console.log(typeof null);
+console.log(typeof undefined);
+console.log(null === undefined);
+console.log(null == undefined);
+// object
+// undefined
+// false
+// true
+console.log(0.1 + 0.2 === 0.3);
+console.log(9007199254740992 === 9007199254740993);
+// false
+// true
+
+console.log([] == ![]); //true
+// Actually, the output will be `true`. 
+// In JavaScript, the `==` operator performs type coercion before comparing values. In this case, the empty array `[]` is coerced to an empty string, while the `![]` expression is coerced to a boolean value. 
+// Let's break it down:
+// - `[]` coerces to an empty string `""`.
+// - `![]` evaluates to `false` since `[]` is a truthy value and the negation operator `!` flips it to `false`.
+// - Therefore, the comparison becomes `"" == false`.
+// - During the comparison, the boolean value `false` is coerced to a number, resulting in `0`.
+// - Finally, the comparison becomes `"" == 0`.
+
+// In JavaScript, an empty string `""` is loosely equal to `0`, so the expression `"" == 0` evaluates to `true`.
+
+console.log(2 + '2' - 1); //21
+
+console.log(3 > 2 > 1); // false
+console.log([] === []); //false even == also false
+
+
