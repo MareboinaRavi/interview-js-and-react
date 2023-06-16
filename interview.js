@@ -111,5 +111,107 @@ console.log(2 + '2' - 1); //21
 
 console.log(3 > 2 > 1); // false
 console.log([] === []); //false even == also false
+################################################################################
+const findMissingNumber = (arr) => {
+  const n = arr.length + 1; // Number of elements including the missing one
+  const expectedSum = (n * (n + 1)) / 2; // Expected sum of consecutive numbers from 1 to n
+  const actualSum = arr.reduce((sum, num) => sum + num, 0); // Sum of the elements in the array
+  return expectedSum - actualSum; // The difference is the missing number
+};
 
+console.log(findMissingNumber([1, 2, 4, 5, 6])); // Output: 3
+##################################################################################################
+const flattenArray = (arr) => {
+  let newArr = [];
 
+  arr.forEach((item) => {
+    if (Array.isArray(item)) {
+      newArr = newArr.concat(flattenArray(item));
+    } else {
+      newArr.push(item);
+    }
+  });
+
+  return newArr;
+};
+
+console.log(flattenArray([1, [2, 4], 5, 6]));
+####################################################################################################################
+const capitalizeMe = (word) => word[0].toUpperCase() + word.slice(1);
+
+const capitalizeWords = (str) => {
+  const arr = str.split(' ');
+  const capitalizedArr = arr.map((word) => capitalizeMe(word));
+  return capitalizedArr.join(' ');
+};
+
+console.log(capitalizeWords("mareboina ravi yadav"));
+####################################################################################
+const findDuplicates = arr => {
+  const duplicates = [];
+  const countMap = {};
+  for (let i = 0; i < arr.length; i++) {
+    const element = arr[i];
+    if (countMap[element]) {
+      duplicates.push(element);
+    }
+    countMap[element] = (countMap[element] || 0) + 1;
+  }
+  return duplicates;
+};
+console.log(findDuplicates([1, 2, 3, 2, 4, 1, 5]));
+###################################################################
+const removeDuplicates = (arr) => {
+  const uniqueArr = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (!uniqueArr.includes(arr[i])) {
+      uniqueArr.push(arr[i]);
+    }
+  }
+
+  return uniqueArr;
+};
+
+console.log(removeDuplicates([1, 2, 3, 2, 4, 1, 5]));
+##############################################################################
+const findLargestNumber = (arr) => {
+  let largest = arr[0];
+  arr.forEach((ele) => {
+    if (ele > largest) {
+      largest = ele;
+    }
+  });
+  return largest;
+};
+
+console.log(findLargestNumber([20, 400, 0, 80, 0]));
+#################################################################################################
+const capitalizeLongWords = (str) => {
+  const words = str.split(' ');
+
+  const capitalizedWords = words.map((word) => {
+    if (word.length > 5) {
+      return word.toUpperCase();
+    } else {
+      return word;
+    }
+  });
+
+  return capitalizedWords.join(' ');
+};
+
+console.log(capitalizeLongWords("hello world programming is fun"));
+###############################################################################################################
+const countOccurrences = (arr, target) => {
+  let count = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === target) {
+      count++;
+    }
+  }
+  return count;
+};
+console.log(countOccurrences([1, 2, 3, 4, 2, 1, 2], 2));
+
+####################################################################################################################
