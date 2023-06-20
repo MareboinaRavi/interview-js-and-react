@@ -1,3 +1,53 @@
+
+# ########################################################################
+Write a function in JavaScript that takes an array of numbers as input and returns the sum of the two largest numbers in the array. For example, if the input array is `[5, 2, 9, 1, 7]`, the function should return `16` (9 + 7).
+
+Take your time to solve it, and let me know when you're ready to proceed or if you have any questions!
+# ########################################################################
+const isPrime = (num) => {
+  if (num <= 1) {
+    return false; // Numbers less than or equal to 1 are not prime
+  }
+
+  for (let i = 2; i <= Math.sqrt(num); i++) {
+    if (num % i === 0) {
+      return false; // Found a divisor other than 1 and itself, not prime
+    }
+  }
+
+  return true; // No divisors found, prime number
+};
+
+console.log(isPrime(7)); // Output: true
+console.log(isPrime(4)); // Output: false
+
+# ########################################################################
+Here's an example implementation of the function that counts the occurrences of each character in a string:
+
+```javascript
+const countCharacters = (str) => {
+  const count = {};
+
+  for (let i = 0; i < str.length; i++) {
+    const char = str[i];
+    if (char !== ' ') {
+      count[char] = count[char] ? count[char] + 1 : 1;
+    }
+  }
+
+  return count;
+};
+
+console.log(countCharacters("Hello World"));
+// Output: { "H": 1, "e": 1, "l": 3, "o": 2, "W": 1, "r": 1, "d": 1 }
+```
+
+In this implementation, we initialize an empty object called `count` to store the counts of each character. We iterate through each character in the input string, and if the character is not a whitespace, we check if it already exists as a key in the `count` object. If it does, we increment its count by 1; otherwise, we set its count to 1.
+
+Note that this implementation considers the case sensitivity of characters. If you want to ignore the case and count characters in a case-insensitive manner, you can convert all characters to lowercase or uppercase before counting.
+
+I hope this helps! Let me know if you have any further questions.
+# ############################################################################
 Certainly! Here's an example implementation of the function that finds the second smallest element in an array:
 
 ```javascript
