@@ -215,3 +215,115 @@ const countOccurrences = (arr, target) => {
 console.log(countOccurrences([1, 2, 3, 4, 2, 1, 2], 2));
 
 ####################################################################################################################
+Certainly! Here's an example of advanced JavaScript code that demonstrates a few concepts like closures and higher-order functions:
+
+```javascript
+function outerFunction(outerParam) {
+  return function innerFunction(innerParam) {
+    console.log(`Outer parameter: ${outerParam}`);
+    console.log(`Inner parameter: ${innerParam}`);
+  };
+}
+
+const closureExample = outerFunction('Hello');
+closureExample('World');
+```
+
+In the code above, we have an `outerFunction` that takes an `outerParam` as a parameter. Inside `outerFunction`, we define an `innerFunction` that takes an `innerParam`. 
+
+The interesting part is that `innerFunction` is returned from `outerFunction`, creating a closure. The closure retains access to the `outerParam` even after `outerFunction` has finished executing.
+
+We then assign the returned `innerFunction` to the `closureExample` variable. Finally, we call `closureExample` with the parameter `'World'`.
+
+When executed, the code will log the following output:
+
+```
+Outer parameter: Hello
+Inner parameter: World
+```
+
+This example demonstrates how closures allow inner functions to access variables from their outer lexical scope, even after the outer function has finished executing.
+
+Closures are powerful because they can be used to create private variables and functions, implement data encapsulation, and maintain state in functional programming.
+#####################################################################################################################################
+  Certainly! Here's another example of advanced JavaScript code that showcases the use of Promises and asynchronous programming:
+
+```javascript
+function fetchUserData(userId) {
+  return new Promise((resolve, reject) => {
+    // Simulating an asynchronous operation (e.g., API request)
+    setTimeout(() => {
+      // Assuming successful response
+      const user = { id: userId, name: 'John Doe', age: 30 };
+      resolve(user);
+    }, 2000);
+  });
+}
+
+function fetchUserPosts(userId) {
+  return new Promise((resolve, reject) => {
+    // Simulating another asynchronous operation
+    setTimeout(() => {
+      // Assuming successful response
+      const posts = ['Post 1', 'Post 2', 'Post 3'];
+      resolve(posts);
+    }, 1500);
+  });
+}
+
+function fetchUserDetails(userId) {
+  return Promise.all([fetchUserData(userId), fetchUserPosts(userId)]);
+}
+
+fetchUserDetails(123)
+  .then(([user, posts]) => {
+    console.log('User:', user);
+    console.log('Posts:', posts);
+  })
+  .catch((error) => {
+    console.log('Error:', error);
+  });
+```
+
+In this code, we have three functions: `fetchUserData`, `fetchUserPosts`, and `fetchUserDetails`. Each of these functions returns a Promise that represents an asynchronous operation (e.g., making API requests).
+
+The `fetchUserDetails` function combines the results of `fetchUserData` and `fetchUserPosts` using `Promise.all`. This ensures that both operations complete before the combined result is available.
+
+We then call `fetchUserDetails(123)` to fetch the user data and posts for the user with ID 123. The `then` method is used to handle the successful resolution of the Promise, where we receive an array containing the user data and posts. We log them to the console.
+
+If an error occurs during the asynchronous operations, the `catch` method will be triggered, and the error will be logged.
+
+This example demonstrates how Promises can be used to handle asynchronous operations in a more readable and manageable way, allowing us to chain multiple asynchronous tasks and handle their results or errors accordingly.
+#####################################################################################################################################
+  
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
+#####################################################################################################################################
