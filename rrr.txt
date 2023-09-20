@@ -1,0 +1,156 @@
+Certainly! Here are code examples for each of the following Higher Order Components (HOCs) in React:
+
+### Authentication HOC:
+
+An Authentication HOC is used to control access to certain routes or components based on the user's authentication status. It typically redirects unauthenticated users to a login page or restricts access to certain components.
+
+```jsx
+import React from 'react';
+import { Redirect } from 'react-router-dom';
+
+// Define a simple authentication check (you can replace this with your actual authentication logic)
+const isAuthenticated = () => {
+  // Check if the user is authenticated (e.g., by verifying a token)
+  return true; // Replace with your authentication logic
+};
+
+// Authentication HOC
+const withAuth = (WrappedComponent) => {
+  return class extends React.Component {
+    render() {
+      if (isAuthenticated()) {
+        // User is authenticated, render the wrapped component
+        return <WrappedComponent {...this.props} />;
+      } else {
+        // User is not authenticated, redirect to the login page
+        return <Redirect to="/login" />;
+      }
+    }
+  };
+};
+
+// Example usage of the Authentication HOC
+class ProtectedComponent extends React.Component {
+  render() {
+    return <div>Protected Content</div>;
+  }
+}
+
+const AuthProtectedComponent = withAuth(ProtectedComponent);
+
+export default AuthProtectedComponent;
+```
+
+### Routing HOC:
+
+A Routing HOC is used to add routing functionality to a component or group of components. It allows you to navigate between different views or pages in your application.
+
+```jsx
+import React from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
+// Routing HOC
+const withRouting = (WrappedComponent) => {
+  return class extends React.Component {
+    render() {
+      return (
+        <Router>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/about">About</Link>
+              </li>
+              <li>
+                <Link to="/contact">Contact</Link>
+              </li>
+            </ul>
+          </nav>
+          <Route path="/" exact component={WrappedComponent} />
+          {/* Add more routes as needed */}
+        </Router>
+      );
+    }
+  };
+};
+
+// Example usage of the Routing HOC
+const HomeComponent = () => {
+  return <div>Home Page</div>;
+};
+
+const HomeWithRouting = withRouting(HomeComponent);
+
+export default HomeWithRouting;
+```
+
+### Data Fetching HOC:
+
+A Data Fetching HOC is used to manage data fetching and state management for a component. It abstracts away the data loading logic, making it reusable across different components.
+
+```jsx
+import React, { Component } from 'react';
+
+// Data Fetching HOC
+const withDataFetching = (url) => (WrappedComponent) => {
+  return class extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        data: [],
+        loading: true,
+        error: null,
+      };
+    }
+
+    componentDidMount() {
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => this.setState({ data, loading: false }))
+        .catch((error) => this.setState({ error, loading: false }));
+    }
+
+    render() {
+      const { data, loading, error } = this.state;
+
+      return (
+        <WrappedComponent
+          data={data}
+          loading={loading}
+          error={error}
+          {...this.props}
+        />
+      );
+    }
+  };
+};
+
+// Example usage of the Data Fetching HOC
+const PostList = ({ data, loading, error }) => {
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  return (
+    <ul>
+      {data.map((post) => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  );
+};
+
+const API_URL = 'https://jsonplaceholder.typicode.com/posts';
+
+const PostListWithData = withDataFetching(API_URL)(PostList);
+
+export default PostListWithData;
+```
+
+These examples illustrate how to create and use Higher Order Components for Authentication, Routing, and Data Fetching in React. You can adapt these patterns to suit your specific use cases and customize the behavior as needed.
